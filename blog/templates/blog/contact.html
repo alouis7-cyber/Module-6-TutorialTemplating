@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<h2>Contact</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+
+<hr>
+
+<h3>Messages</h3>
+
+{% for msg in messages %}
+    <div>
+        <strong>{{ msg.name }}</strong><br>
+        {{ msg.message }}<br>
+        <small>{{ msg.created_at }}</small>
+    </div>
+{% empty %}
+    <p>No messages yet.</p>
+{% endfor %}
+
+{% endblock %}
