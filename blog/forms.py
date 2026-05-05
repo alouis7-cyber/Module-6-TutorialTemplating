@@ -1,5 +1,20 @@
 from django import forms
+from .models import ContactMessage, Post, Comment
 
-class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'message']
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'body']
